@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Endereco extends Model
 {
+    use HasFactory;
+
+    protected $table = 'endereco';
     /**
      * The attributes that are mass assignable.
      *
@@ -21,5 +24,10 @@ class Endereco extends Model
         'numero',
         'latitude',
         'longitude',
+        'cliente_id'
     ];
+
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
 }

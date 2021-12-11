@@ -15,7 +15,9 @@ class CreateEnderecoTable extends Migration
     {
         Schema::create('endereco', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('cep',);
+            $table->bigInteger('id_cliente')->unsigned();
+            $table->foreign('id_cliente')->references('id')->on('users');
+            $table->bigInteger('cep');
             $table->string('estado');
             $table->string('cidade');
             $table->string('bairro');

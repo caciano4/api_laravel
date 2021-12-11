@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Endereco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnderecoController extends Controller
 {
@@ -14,18 +15,13 @@ class EnderecoController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('endereco.index', compact('users'));
-    }
+        try {
+             $endereco = DB::select('SELECT * FROM users JOIN endereco on(endereco.id_cliente = users.id)');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+            return  response()->json(array('success' => true, 'response' => $endereco), 201);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false,'response' => []], 500);
+        }
     }
 
     /**
@@ -36,7 +32,17 @@ class EnderecoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $endereco = new Endereco();
+        $endereco->cep = $request->cep;
+        $endereco->id_cliente = $request->id_cliente;
+        $endereco->estado = $request->estado;
+        $endereco->cidade = $request->cidade;
+        $endereco->bairro = $request->bairro;
+        $endereco->logradouro = $request->logradouro;
+        $endereco->numero = $request->numero;
+        $endereco->latitude = $request->latitude;
+        $endereco->longitude = $request->longitude;
+        $endereco->save();
     }
 
     /**

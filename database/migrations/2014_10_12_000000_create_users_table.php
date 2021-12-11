@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->nullable();
-            $table->date('data_nascimento');
+            $table->string('data_nascimento');
             $table->string('tipo_pessoa')->nullable();
             $table->bigInteger('CPF_CNPJ')->unique();
             $table->timestamps();
