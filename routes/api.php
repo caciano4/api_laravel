@@ -6,6 +6,7 @@ use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\UserController;
 
 /*
+/
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
