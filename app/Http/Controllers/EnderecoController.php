@@ -16,8 +16,7 @@ class EnderecoController extends Controller
     public function index()
     {
         try {
-             $endereco = DB::select('SELECT * FROM users JOIN endereco on(endereco.id_cliente = users.id)');
-
+             $endereco = DB::select('SELECT * FROM users');
             return  response()->json(array('success' => true, 'response' => $endereco), 201);
         } catch (\Exception $e) {
             return response()->json(['success' => false,'response' => []], 500);
